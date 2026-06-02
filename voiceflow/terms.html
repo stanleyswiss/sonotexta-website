@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - VoiceFlow</title>
+    <link rel="icon" type="image/png" href="icon-small.png">
+    <style>
+        :root {
+            --bg: #0a0a12;
+            --surface: #12121e;
+            --border: rgba(255,255,255,0.06);
+            --text: #e8e8f0;
+            --text-secondary: #8888a0;
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .nav {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav a {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .nav span { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        p, li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        .highlight-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        strong { color: var(--text); }
+
+        a { color: var(--accent-light); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer a { color: var(--accent-light); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.8rem; }
+            .content { padding: 2rem 1.5rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="index.html">VoiceFlow</a>
+    <span>/</span>
+    <span>Terms of Service</span>
+</nav>
+
+<div class="content">
+    <h1>Terms of Service</h1>
+    <p class="last-updated">Last updated: April 1, 2026</p>
+
+    <p>These Terms of Service ("Terms") govern your use of VoiceFlow, a macOS dictation application developed by Stan ("we", "us", "our"). By downloading or using VoiceFlow, you agree to these Terms.</p>
+
+    <h2>1. License Grant</h2>
+    <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use VoiceFlow on macOS devices you own or control, subject to these Terms.</p>
+    <ul>
+        <li><strong>Free tier:</strong> Includes on-device speech engines (Apple Speech, Whisper, Parakeet TDT) with basic dictation functionality. Free to use indefinitely.</li>
+        <li><strong>VoiceFlow Pro:</strong> One-time purchase of CHF 9.99 (or equivalent) unlocks cloud engines, AI post-processing, profiles, and smart contact detection. Licensed per user with a maximum of 3 device activations.</li>
+    </ul>
+
+    <h2>2. License Keys</h2>
+    <p>Pro licenses are delivered as unique license keys issued through <a href="https://www.lemonsqueezy.com">Lemon Squeezy</a>. You are responsible for keeping your license key secure. Sharing, reselling, or distributing license keys is prohibited. We reserve the right to deactivate keys that violate these Terms.</p>
+
+    <h2>3. Purchases & Refunds</h2>
+    <div class="highlight-box">
+        <p>All purchases are processed by <strong>Lemon Squeezy</strong>, which acts as the Merchant of Record. Payment processing, tax collection, and invoicing are handled by Lemon Squeezy under their <a href="https://www.lemonsqueezy.com/terms">terms of service</a>.</p>
+    </div>
+    <p>A <strong>7-day free trial</strong> of Pro features is available for new users. We encourage you to evaluate VoiceFlow during the trial period before purchasing. Refund requests may be submitted to Lemon Squeezy within 14 days of purchase if VoiceFlow does not function as described.</p>
+
+    <h2>4. API Keys & Third-Party Services</h2>
+    <p>VoiceFlow uses a Bring Your Own Key (BYOK) model for cloud features. You are responsible for:</p>
+    <ul>
+        <li>Obtaining and managing your own API keys from third-party providers (OpenAI, Deepgram, Groq, Google, OpenRouter, Ollama Cloud)</li>
+        <li>Any costs incurred through your use of third-party APIs</li>
+        <li>Complying with the terms of service of each provider you use</li>
+    </ul>
+    <p>We are not responsible for the availability, pricing, or data practices of third-party API providers.</p>
+
+    <h2>5. Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+        <li>Reverse engineer, decompile, or disassemble VoiceFlow</li>
+        <li>Modify, adapt, or create derivative works of VoiceFlow</li>
+        <li>Circumvent or tamper with license validation or trial mechanisms</li>
+        <li>Use VoiceFlow for any unlawful purpose</li>
+        <li>Redistribute VoiceFlow or any part of it</li>
+    </ul>
+
+    <h2>6. Intellectual Property</h2>
+    <p>VoiceFlow and all associated intellectual property are owned by us. This license does not grant you any ownership rights. Third-party components (Sparkle, WhisperKit, FluidAudio) are used under their respective open-source licenses.</p>
+
+    <h2>7. Privacy</h2>
+    <p>Your privacy is important to us. Please review our <a href="privacy.html">Privacy Policy</a> for details on how VoiceFlow handles data. In summary: we collect no personal data, audio is never stored, and API keys remain in your macOS Keychain.</p>
+
+    <h2>8. Disclaimer of Warranties</h2>
+    <p>VoiceFlow is provided <strong>"as is"</strong> without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that VoiceFlow will be error-free or uninterrupted.</p>
+    <p>Transcription accuracy depends on audio quality, language, accent, and the selected speech engine. We do not guarantee the accuracy of any transcription or translation output.</p>
+
+    <h2>9. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or data, arising from your use of VoiceFlow. Our total liability for any claim shall not exceed the amount you paid for VoiceFlow Pro.</p>
+
+    <h2>10. Updates</h2>
+    <p>VoiceFlow includes automatic update functionality via Sparkle. Updates may include bug fixes, new features, or changes to existing functionality. Continued use after an update constitutes acceptance of any modified Terms.</p>
+
+    <h2>11. Termination</h2>
+    <p>We may terminate your license if you violate these Terms. Upon termination, you must cease all use of VoiceFlow and delete all copies. Sections 6, 8, 9, and this section survive termination.</p>
+
+    <h2>12. Governing Law</h2>
+    <p>These Terms are governed by the laws of Switzerland. Any disputes shall be resolved in the courts of Switzerland.</p>
+
+    <h2>13. Changes to These Terms</h2>
+    <p>We may update these Terms from time to time. Changes will be posted on this page with an updated date. Continued use of VoiceFlow after changes constitutes acceptance of the revised Terms.</p>
+
+    <h2>14. Contact</h2>
+    <p>Questions about these Terms? Contact us at: <a href="https://stanmakes.com">stanmakes.com</a></p>
+</div>
+
+<footer>
+    <p><a href="index.html">VoiceFlow</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.5;">Built by <a href="https://stanmakes.com">Stan</a></p>
+</footer>
+
+</body>
+</html>

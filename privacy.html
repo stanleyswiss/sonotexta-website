@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Sonotexta</title>
+    <link rel="icon" type="image/png" href="icon-small.png">
+    <style>
+        :root {
+            --bg: #0a0a12;
+            --surface: #12121e;
+            --border: rgba(255,255,255,0.06);
+            --text: #e8e8f0;
+            --text-secondary: #8888a0;
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .nav {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav a {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .nav span { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        p, li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        .highlight-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        strong { color: var(--text); }
+
+        a { color: var(--accent-light); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer a { color: var(--accent-light); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.8rem; }
+            .content { padding: 2rem 1.5rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="index.html">Sonotexta</a>
+    <span>/</span>
+    <span>Privacy Policy</span>
+</nav>
+
+<div class="content">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: April 4, 2026</p>
+
+    <p>Sonotexta is a macOS dictation application built by Stan (<a href="https://sonotexta.com">sonotexta.com</a>). Your privacy is fundamental to how Sonotexta is designed. This policy explains what data Sonotexta handles, how it is processed, and what is stored.</p>
+
+    <div class="highlight-box">
+        <p><strong>The short version:</strong> Sonotexta does not collect, store, or transmit any personal data to us. Audio is never recorded or saved. BYOK users connect directly to providers. Subscription users' data passes through our secure proxy but is never logged or stored. We have no accounts, no analytics, and no tracking.</p>
+    </div>
+
+    <h2>1. Audio Data</h2>
+    <p>Sonotexta accesses your microphone solely to perform speech-to-text transcription. Audio is processed in one of two ways depending on your chosen engine:</p>
+    <ul>
+        <li><strong>On-device engines</strong> (Apple Speech, Whisper, Parakeet TDT): Audio is processed entirely on your Mac. It never leaves your device.</li>
+        <li><strong>Cloud engines</strong> (OpenAI Realtime, Deepgram Nova-3): Audio is streamed directly from your Mac to the provider's API using <strong>your own API key</strong> (BYOK mode) or through our secure proxy (subscription mode). Sonotexta never records, saves, or logs your audio. Refer to <a href="https://openai.com/privacy">OpenAI's privacy policy</a> and <a href="https://deepgram.com/privacy">Deepgram's privacy policy</a> for how they handle audio data.</li>
+    </ul>
+    <p><strong>Sonotexta never records, saves, or logs audio.</strong> Once transcription is complete, the audio buffer is discarded.</p>
+
+    <h2>2. Subscription Services and Data Processing</h2>
+    <p>When using <strong>Sonotexta AI</strong> or <strong>Sonotexta Cloud</strong> subscriptions, audio and text data is routed through our secure proxy server to OpenAI's API for transcription and AI enhancement.</p>
+    <div class="highlight-box">
+        <p><strong>We do NOT log, store, or retain any transcription content, audio data, or text that passes through our proxy.</strong> The proxy server acts solely as a relay &mdash; it adds authentication credentials and forwards requests to OpenAI. No data is cached, queued, or written to disk.</p>
+    </div>
+    <ul>
+        <li>Our proxy is hosted on <strong>Cloudflare Workers</strong>, running on Cloudflare's global edge network with enterprise-grade security and encryption in transit.</li>
+        <li>Data processing by the upstream provider is governed by <a href="https://openai.com/policies/usage-policies">OpenAI's usage policies</a>.</li>
+        <li>Subscription authentication is handled via secure tokens &mdash; your subscription status is verified without exposing any personal data beyond your license key.</li>
+    </ul>
+
+    <h2>3. BYOK (Bring Your Own Key) Mode</h2>
+    <p>When using your own API keys, <strong>all requests go directly from your Mac to the provider</strong> (OpenAI, Deepgram, Groq, Gemini, OpenRouter, or Ollama Cloud). Sonotexta never sees, intercepts, stores, or has access to your API requests or responses when using BYOK mode. Your Mac communicates with the provider's API endpoint directly.</p>
+
+    <h2>4. API Keys</h2>
+    <p>Sonotexta uses a Bring Your Own Key (BYOK) model for Pro users. Any API keys you enter (for OpenAI, Deepgram, Groq, Gemini, OpenRouter, or Ollama Cloud) are stored exclusively in your <strong>macOS Keychain</strong> &mdash; Apple's encrypted credential storage. API keys are sent only to the respective provider's API endpoint and are never transmitted to us or any third party.</p>
+
+    <h2>5. AI Post-Processing</h2>
+    <p>When you enable AI cleanup, translation, or tone adjustment, your transcribed text (not audio) is sent to the AI provider you selected, using your own API key (BYOK) or through our managed proxy (subscription). Supported providers include OpenAI, Groq, Google Gemini, OpenRouter, Ollama (fully local), and Ollama Cloud. When using Ollama locally, no data leaves your device.</p>
+
+    <h2>6. Usage Statistics</h2>
+    <p>Sonotexta tracks local usage statistics to help you understand your dictation habits:</p>
+    <ul>
+        <li>Session count, word count, and total dictation time</li>
+        <li>Session history with timestamps</li>
+    </ul>
+    <div class="highlight-box">
+        <p><strong>This data is stored locally in UserDefaults on your Mac and never leaves your device.</strong> It is not transmitted to us or any third party. You can reset these statistics at any time from Settings &rarr; Stats.</p>
+    </div>
+
+    <h2>7. License Validation</h2>
+    <p>If you purchase Sonotexta Pro or subscribe to Sonotexta AI or Cloud, your license key is validated through <a href="https://www.lemonsqueezy.com/privacy">Lemon Squeezy</a>, our payment and licensing provider. The only data exchanged during validation is:</p>
+    <ul>
+        <li>Your license key</li>
+        <li>A device identifier (for activation limit enforcement)</li>
+    </ul>
+    <p>No personal information, usage data, or transcription content is included in license validation requests. Your license key is stored in your macOS Keychain.</p>
+
+    <h2>8. Smart Contact Detection</h2>
+    <p>Sonotexta can read the title of your frontmost application window (e.g., a contact name in iMessage or Teams) to automatically switch language and tone profiles. This data is processed entirely on your device and is <strong>never transmitted anywhere</strong>. Window titles are not stored or logged.</p>
+
+    <h2>9. Automatic Updates</h2>
+    <p>Sonotexta uses <a href="https://sparkle-project.org">Sparkle</a>, an open-source update framework, to check for new versions. Update checks connect to GitHub Pages to download the update feed (appcast.xml). No personal data is sent during update checks beyond what a standard HTTPS request includes (IP address, which is not logged by us).</p>
+
+    <h2>10. Data We Collect</h2>
+    <div class="highlight-box">
+        <p><strong>None.</strong> Sonotexta has no analytics, no telemetry, no crash reporting, no user accounts, and no server-side data storage. We do not collect, store, or process any personal data. There is nothing to request, export, or delete because nothing is collected.</p>
+    </div>
+
+    <h2>11. Third-Party Services</h2>
+    <p>When you choose to use cloud features, your data is handled by the respective third-party provider under their own privacy policy. Sonotexta integrates with:</p>
+    <ul>
+        <li><strong>OpenAI</strong> &mdash; for Realtime transcription, AI post-processing, and managed subscription services</li>
+        <li><strong>Deepgram</strong> &mdash; for Nova-3 streaming transcription</li>
+        <li><strong>Groq, Google Gemini, OpenRouter, Ollama Cloud</strong> &mdash; for AI post-processing</li>
+        <li><strong>Cloudflare Workers</strong> &mdash; for hosting the subscription proxy relay</li>
+        <li><strong>Lemon Squeezy</strong> &mdash; for payment processing and license management</li>
+        <li><strong>Sparkle / GitHub Pages</strong> &mdash; for automatic updates</li>
+    </ul>
+    <p>You are responsible for reviewing the privacy policies of any third-party service you choose to use through Sonotexta.</p>
+
+    <h2>12. Children's Privacy</h2>
+    <p>Sonotexta is not directed at children under 13. We do not knowingly collect any information from children.</p>
+
+    <h2>13. Changes to This Policy</h2>
+    <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated date. Continued use of Sonotexta after changes constitutes acceptance of the revised policy.</p>
+
+    <h2>14. Contact</h2>
+    <p>If you have questions about this privacy policy, contact us at: <a href="mailto:developer@sonotexta.com">developer@sonotexta.com</a></p>
+</div>
+
+<footer>
+    <p><a href="index.html">Sonotexta</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.5;">Built by <a href="https://sonotexta.com">Stan</a></p>
+</footer>
+
+</body>
+</html>

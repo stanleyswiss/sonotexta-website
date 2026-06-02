@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceFlow — Voice to Text for macOS | Instant Dictation in 98+ Languages</title>
+    <meta name="description" content="Turn your voice into clean, polished text in any app. VoiceFlow for macOS handles transcription, translation, and AI cleanup — just hit record. 98+ languages, zero setup.">
+    <meta property="og:title" content="VoiceFlow — Just Hit Record">
+    <meta property="og:description" content="Instant voice-to-text for macOS. 98+ languages, AI cleanup, real-time streaming. Free download.">
+    <meta property="og:image" content="icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stanleyswiss.github.io/voiceflow-updates/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VoiceFlow — Just Hit Record">
+    <meta name="twitter:description" content="Instant voice-to-text for macOS. 98+ languages, AI cleanup, real-time streaming.">
+    <meta name="keywords" content="dictation, macOS, voice to text, speech recognition, transcription, multilingual, AI, OpenAI, Whisper, real-time, Apple Silicon">
+    <link rel="canonical" href="https://stanleyswiss.github.io/voiceflow-updates/">
+    <link rel="icon" type="image/png" href="icon-small.png">
+    <style>
+        :root {
+            --bg: #0a0a12;
+            --surface: #12121e;
+            --border: rgba(255,255,255,0.06);
+            --text: #e8e8f0;
+            --text-secondary: #8888a0;
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+            --gradient-start: #1e1545;
+            --gradient-end: #4a1a8a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, var(--gradient-start) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, var(--gradient-end) 0%, transparent 50%);
+            opacity: 0.4;
+            animation: drift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-5%, 3%) rotate(3deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .app-icon {
+            width: 128px;
+            height: 128px;
+            border-radius: 28px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(108, 92, 231, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--accent), var(--gradient-end));
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.5);
+        }
+
+        .buy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #e8a838, #e07c24);
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(224, 124, 36, 0.3);
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(224, 124, 36, 0.45);
+        }
+
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .version-info {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .requirements {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* Waveform decoration */
+        .waveform-deco {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .waveform-deco .bar {
+            width: 4px;
+            border-radius: 2px;
+            background: var(--accent-light);
+            opacity: 0.5;
+            animation: wave 1.2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { height: 8px; opacity: 0.3; }
+            50% { height: var(--h); opacity: 0.7; }
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 6rem 2rem 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .pricing .pricing-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(108, 92, 231, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(108, 92, 231, 0.15);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent), var(--gradient-end));
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .pricing-card .pricing-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .pricing-card .pricing-price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+
+        .pricing-card .pricing-price-note {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
+        }
+
+        .pricing-card .pricing-features li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+
+        .pricing-card .pricing-features li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--accent-light);
+            font-weight: 700;
+        }
+
+        .pricing-card .pricing-cta {
+            display: block;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .pricing-cta-primary {
+            background: linear-gradient(135deg, var(--accent), var(--gradient-end));
+            color: white;
+            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3);
+        }
+
+        .pricing-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(108, 92, 231, 0.45);
+        }
+
+        .pricing-cta-secondary {
+            background: linear-gradient(135deg, #e8a838, #e07c24);
+            color: white;
+            box-shadow: 0 4px 16px rgba(224, 124, 36, 0.3);
+        }
+
+        .pricing-cta-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(224, 124, 36, 0.45);
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(108, 92, 231, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Engines section */
+        .engines {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .engines h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .engine-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 1rem;
+        }
+
+        .engine-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .engine-info h3 { font-size: 1.05rem; font-weight: 600; }
+        .engine-info p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        .engine-tag {
+            margin-left: auto;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(108, 92, 231, 0.15);
+            color: var(--accent-light);
+            white-space: nowrap;
+        }
+
+        /* Pro CTA - Plans Section */
+        .plans-cta {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .plans-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .plans-cta > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .plans-cta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            text-align: left;
+        }
+
+        .plans-cta-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .plans-cta-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .plans-cta-card .cta-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e8a838, #e07c24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+        }
+
+        .plans-cta-card .cta-price-note {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        /* Release Notes */
+        .release-notes {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .release-notes h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .release {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .release-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .release-version {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .release-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .release-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            background: rgba(108, 92, 231, 0.15);
+            color: var(--accent-light);
+            margin-left: auto;
+        }
+
+        .release ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .release li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 0.25rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .release li::before {
+            content: '+';
+            position: absolute;
+            left: 0;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 { font-size: 2.4rem; }
+            .tagline { font-size: 1.1rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .engine-row { flex-direction: column; text-align: center; }
+            .engine-tag { margin-left: 0; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .plans-cta-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (min-width: 641px) and (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .plans-cta-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+        }
+        .hero-bullets {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .hero-bullets span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        .bullet-sep {
+            opacity: 0.4;
+        }
+
+        /* Demo Video */
+        .demo-video {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .demo-video h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .demo-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .demo-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(108, 92, 231, 0.15);
+        }
+        .demo-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .contact-inner {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            padding: 0.8rem 1.8rem;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .contact-btn:hover {
+            background: rgba(108, 92, 231, 0.1);
+            border-color: var(--accent-light);
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-content">
+        <img src="icon.png" alt="VoiceFlow" class="app-icon">
+
+        <div class="waveform-deco">
+            <div class="bar" style="--h: 16px; animation-delay: 0s;"></div>
+            <div class="bar" style="--h: 28px; animation-delay: 0.1s;"></div>
+            <div class="bar" style="--h: 22px; animation-delay: 0.2s;"></div>
+            <div class="bar" style="--h: 36px; animation-delay: 0.15s;"></div>
+            <div class="bar" style="--h: 30px; animation-delay: 0.25s;"></div>
+            <div class="bar" style="--h: 20px; animation-delay: 0.05s;"></div>
+            <div class="bar" style="--h: 14px; animation-delay: 0.3s;"></div>
+        </div>
+
+        <h1>VoiceFlow</h1>
+        <p class="tagline">We handle everything. You just hit record.</p>
+        <div class="hero-bullets">
+            <span>Instant transcription</span>
+            <span class="bullet-sep">&middot;</span>
+            <span>Virtually any language</span>
+            <span class="bullet-sep">&middot;</span>
+            <span>Zero setup</span>
+            <span class="bullet-sep">&middot;</span>
+            <span>AI-powered</span>
+        </div>
+
+        <a href="https://stanleyswiss.github.io/voiceflow-updates/VoiceFlow.dmg" class="download-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Download for macOS
+        </a>
+        <p class="version-info">v3.1 &middot; Free download &middot; 6 MB</p>
+        <p class="requirements">Requires macOS 15.0 or later &middot; Apple Silicon</p>
+    </div>
+</section>
+
+<section class="pricing" id="pricing">
+    <h2>Start free. Upgrade when you're ready.</h2>
+    <p class="pricing-subtitle">Local engines are always free. Add managed AI or cloud transcription &mdash; no API keys, no configuration.</p>
+
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>Pro</h3>
+            <p class="pricing-desc">Unlock all engines and BYOK cloud features</p>
+            <div class="pricing-price">$9.99</div>
+            <div class="pricing-price-note">One-time purchase &middot; 7-day free trial</div>
+            <ul class="pricing-features">
+                <li>Multiple profiles with contact detection</li>
+                <li>Engine selection per profile</li>
+                <li>Bring Your Own Key cloud engines</li>
+                <li>AI cleanup and translation (BYOK)</li>
+                <li>3 device activations</li>
+            </ul>
+            <a href="https://voiceflowai.lemonsqueezy.com/checkout/buy/1985f923-cd89-4dbe-a67e-12e9a4868287?embed=1" class="lemonsqueezy-button pricing-cta pricing-cta-secondary">Get Pro</a>
+        </div>
+
+        <div class="pricing-card">
+            <h3>VoiceFlow AI</h3>
+            <p class="pricing-desc">Managed AI enhancement &mdash; no API key needed</p>
+            <div class="pricing-price">$7.99<span style="font-size: 0.9rem; font-weight: 400;">/mo</span></div>
+            <div class="pricing-price-note">5-day trial for $1.99</div>
+            <ul class="pricing-features">
+                <li>Everything in Pro</li>
+                <li>Managed AI enhancement (no API key)</li>
+                <li>8 enhancement presets per profile</li>
+                <li>AI-powered translation</li>
+                <li>Clean &amp; Correct, Professional, Bullet Points, Summary, and more</li>
+            </ul>
+            <a href="https://voiceflowai.lemonsqueezy.com/checkout/buy/bebb8dee-1be4-4934-8f61-cd4c4cc87712?embed=1" class="lemonsqueezy-button pricing-cta pricing-cta-primary">Subscribe to AI</a>
+        </div>
+
+        <div class="pricing-card featured">
+            <div class="pricing-badge">Best Value</div>
+            <h3>VoiceFlow Cloud</h3>
+            <p class="pricing-desc">Zero-config cloud transcription + AI</p>
+            <div class="pricing-price">$14.99<span style="font-size: 0.9rem; font-weight: 400;">/mo</span></div>
+            <div class="pricing-price-note">5-day trial for $3.99</div>
+            <ul class="pricing-features">
+                <li>Everything in AI</li>
+                <li>Managed cloud transcription (no API key)</li>
+                <li>98+ languages with auto-detection</li>
+                <li>Zero setup &mdash; works instantly</li>
+                <li>Real-time streaming transcription</li>
+            </ul>
+            <a href="https://voiceflowai.lemonsqueezy.com/checkout/buy/10a48620-d04f-4d10-9f2f-6beda5f763f9?embed=1" class="lemonsqueezy-button pricing-cta pricing-cta-primary">Subscribe to Cloud</a>
+        </div>
+    </div>
+</section>
+
+<section class="demo-video">
+    <h2>See it in action</h2>
+    <p class="demo-subtitle">Watch VoiceFlow translate German to English in Mail, and clean up filler words in Teams &mdash; automatically.</p>
+    <div class="demo-container">
+        <video autoplay loop muted playsinline>
+            <source src="VoiceFlowDemo.mp4" type="video/mp4">
+        </video>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Why people switch to VoiceFlow</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🎙️</div>
+            <h3>Instant Results</h3>
+            <p>Your words appear the moment you speak them. Real-time cloud streaming with sub-second latency. 98+ languages detected automatically &mdash; no switching, no configuration.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>Think in One Language, Write in Another</h3>
+            <p>Dictate in your native tongue and VoiceFlow delivers the text in any of 24 languages. Per-contact tone profiles mean your wife gets casual Czech while your boss gets formal English.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">👤</div>
+            <h3>Smart Contact Detection</h3>
+            <p>VoiceFlow reads who you're chatting with in iMessage, Teams, or Slack and automatically applies the right language and tone profile. No manual switching needed.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>AI That Polishes Your Words</h3>
+            <p>Choose from 8 built-in enhancement presets &mdash; Professional, Bullet Points, Summary, Action Items, and more. Or write your own. Filler words gone, grammar fixed, tone perfected.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Globe Key &amp; Hold to Talk</h3>
+            <p>Use the Globe key as your dictation trigger. Two modes: tap to start/stop, or hold to talk and release to finish &mdash; just like a walkie-talkie. Custom keyboard shortcuts also supported.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Your Voice, Your Rules</h3>
+            <p>Keep everything on your Mac with three on-device engines. Or use cloud streaming for maximum speed. You choose &mdash; no subscriptions required for local processing.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Invisible Until You Need It</h3>
+            <p>Lives in your menu bar. No dock icon, no windows. A floating pill appears when you dictate, disappears when you're done. Works in every app &mdash; Messages, Slack, Obsidian, VS Code.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Automatic Updates</h3>
+            <p>Always stay on the latest version. VoiceFlow checks for updates automatically and installs them with one click &mdash; no manual downloads needed.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>6 AI Providers</h3>
+            <p>OpenAI, Groq (free), Gemini (free), OpenRouter (200+ models), Ollama (fully local &amp; private), and Ollama Cloud. Bring your own key or run completely offline.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💎</div>
+            <h3>Flexible Plans</h3>
+            <p>Free tier includes three on-device engines with basic dictation. Pro ($9.99 one-time) unlocks BYOK cloud features. VoiceFlow AI ($7.99/mo) adds managed AI enhancement. VoiceFlow Cloud ($14.99/mo) adds managed cloud transcription.</p>
+        </div>
+    </div>
+</section>
+
+<section class="plans-cta">
+    <h2>Upgrade VoiceFlow</h2>
+    <p>Cloud streaming, AI cleanup, smart profiles, and contact detection.</p>
+
+    <div class="plans-cta-grid">
+        <div class="plans-cta-card">
+            <h3>Pro</h3>
+            <div class="cta-price">$9.99</div>
+            <div class="cta-price-note">One-time &middot; 7-day free trial</div>
+            <a href="https://voiceflowai.lemonsqueezy.com/checkout/buy/1985f923-cd89-4dbe-a67e-12e9a4868287?embed=1" class="lemonsqueezy-button buy-btn" style="margin-top: 0.5rem; font-size: 0.95rem;">Buy Pro</a>
+        </div>
+        <div class="plans-cta-card">
+            <h3>VoiceFlow AI</h3>
+            <div class="cta-price">$7.99/mo</div>
+            <div class="cta-price-note">5-day trial for $1.99</div>
+            <a href="https://voiceflowai.lemonsqueezy.com/checkout/buy/bebb8dee-1be4-4934-8f61-cd4c4cc87712?embed=1" class="buy-btn" style="margin-top: 0.5rem; font-size: 0.95rem; background: linear-gradient(135deg, var(--accent), var(--gradient-end));">Subscribe AI</a>
+        </div>
+        <div class="plans-cta-card">
+            <h3>VoiceFlow Cloud</h3>
+            <div class="cta-price">$14.99/mo</div>
+            <div class="cta-price-note">5-day trial for $3.99</div>
+            <a href="https://voiceflowai.lemonsqueezy.com/checkout/buy/10a48620-d04f-4d10-9f2f-6beda5f763f9?embed=1" class="buy-btn" style="margin-top: 0.5rem; font-size: 0.95rem; background: linear-gradient(135deg, var(--accent), var(--gradient-end));">Subscribe Cloud</a>
+        </div>
+    </div>
+</section>
+
+<section class="engines">
+    <h2>Five Engines, Your Choice</h2>
+
+    <div class="engine-row">
+        <div class="engine-badge" style="background: linear-gradient(135deg, #2d1a4e, #4a1a8a);">📡</div>
+        <div class="engine-info">
+            <h3>OpenAI Realtime</h3>
+            <p>Streaming cloud transcription with live partials. Auto-detects 98+ languages instantly. The fastest, most accurate option.</p>
+        </div>
+        <span class="engine-tag">Most languages</span>
+    </div>
+
+    <div class="engine-row">
+        <div class="engine-badge" style="background: linear-gradient(135deg, #0a3d5c, #0e7490);">🌊</div>
+        <div class="engine-info">
+            <h3>Deepgram Nova-3</h3>
+            <p>Streaming cloud transcription with real-time code-switching across 10 languages.</p>
+        </div>
+        <span class="engine-tag">Best value</span>
+    </div>
+
+    <div class="engine-row">
+        <div class="engine-badge" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">🍎</div>
+        <div class="engine-info">
+            <h3>Apple Speech</h3>
+            <p>Built-in, zero setup. Auto-detects ~20 languages. No download, no API key needed.</p>
+        </div>
+        <span class="engine-tag">Built-in</span>
+    </div>
+
+    <div class="engine-row">
+        <div class="engine-badge" style="background: linear-gradient(135deg, #0d2137, #1a3a5c);">🎵</div>
+        <div class="engine-info">
+            <h3>OpenAI Whisper (On-Device)</h3>
+            <p>99+ languages with multiple model sizes. Runs locally on your Mac. Can translate any language to English.</p>
+        </div>
+        <span class="engine-tag">On-device</span>
+    </div>
+
+    <div class="engine-row">
+        <div class="engine-badge" style="background: linear-gradient(135deg, #1a2e1a, #2d5a1e);">🚀</div>
+        <div class="engine-info">
+            <h3>NVIDIA Parakeet TDT</h3>
+            <p>Ultra-fast 0.6B model. Choose v2 (English-focused) or v3 (25 European languages). 110x real-time on Apple Silicon.</p>
+        </div>
+        <span class="engine-tag">Fastest on-device</span>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Profiles that adapt to your life</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>iMessage Profiles</h3>
+            <p>Create a profile for each contact. Dictate in Bulgarian to your wife and it auto-translates to Czech. Switch to another chat &mdash; default English kicks in automatically.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Microsoft Teams</h3>
+            <p>Different profiles for different colleagues. VoiceFlow detects who you're chatting with from the window title and switches language and tone on the fly.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Any App, Any Contact</h3>
+            <p>Works with Slack, WhatsApp, Telegram, email &mdash; any app that shows contact names. One-click Detect button captures window titles for easy setup.</p>
+        </div>
+    </div>
+</section>
+
+<section class="release-notes">
+    <h2>Release Notes</h2>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v3.1</span>
+            <span class="release-date">April 4, 2026</span>
+            <span class="release-tag">Latest</span>
+        </div>
+        <ul>
+            <li>VoiceFlow AI and Cloud subscriptions &mdash; zero-config managed AI and cloud transcription</li>
+            <li>8 AI enhancement presets per profile (Clean &amp; Correct, Professional, Bullet Points, Summary, and more)</li>
+            <li>Microphone selection &mdash; choose your input device in Engine settings</li>
+            <li>Automatic transcription cleanup &mdash; silently strips noise artifacts from all engines</li>
+            <li>Dictation statistics &mdash; track words spoken, time saved, and session history</li>
+            <li>Faster update checks every 12 hours</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v2.2</span>
+            <span class="release-date">April 3, 2026</span>
+        </div>
+        <ul>
+            <li>Keep in clipboard &mdash; new setting to keep transcribed/translated text in clipboard for re-pasting</li>
+            <li>VM compatibility &mdash; fixed paste timing for Windows VMs and remote desktop apps</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v2.1</span>
+            <span class="release-date">April 3, 2026</span>
+        </div>
+        <ul>
+            <li>Single-key shortcuts &mdash; use F-keys or special keyboard buttons (e.g., Logitech dedicated keys) as dictation trigger</li>
+            <li>Fixed Globe key crash on some keyboard configurations</li>
+            <li>FaceTime/Zoom mic sharing &mdash; dictate while on a call without audio conflicts</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v2.0</span>
+            <span class="release-date">April 3, 2026</span>
+        </div>
+        <ul>
+            <li>VoiceFlow Pro store live &mdash; production Lemon Squeezy checkout with overlay purchase flow</li>
+            <li>Buy button on website &mdash; purchase Pro directly from the product page</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v1.9</span>
+            <span class="release-date">March 27, 2026</span>
+        </div>
+        <ul>
+            <li>Deepgram Nova-3 &mdash; 5th speech engine with WebSocket streaming, 10 languages with code-switching</li>
+            <li>Nova-2 also available as a cheaper alternative model</li>
+            <li>Fixed Gemini provider &mdash; updated to Gemini 2.5 Flash/Pro (older models retired by Google)</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v1.8</span>
+            <span class="release-date">March 27, 2026</span>
+        </div>
+        <ul>
+            <li>VoiceFlow Pro &mdash; freemium model with 7-day trial, $9.99 one-time purchase via Lemon Squeezy</li>
+            <li>6 AI providers &mdash; OpenAI, Groq (free tier), Google Gemini (free tier), OpenRouter (200+ models including Claude), Ollama (fully local/private), Ollama Cloud</li>
+            <li>Redesigned Settings &mdash; sidebar navigation with card-based layout</li>
+            <li>License management &mdash; activate, deactivate, masked key display, 3-device limit</li>
+            <li>Security hardening &mdash; Keychain encryption, sanitized logging, prompt injection protection, tamper-resistant trial</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v1.7</span>
+            <span class="release-date">March 26, 2026</span>
+        </div>
+        <ul>
+            <li>Automatic updates via Sparkle &mdash; VoiceFlow now checks for and installs updates automatically</li>
+            <li>"Check for Updates..." menu item in the status bar menu</li>
+            <li>Version display in Settings &rarr; General &rarr; About</li>
+            <li>Parakeet model selection &mdash; choose between v2 (English) and v3 (25 European languages)</li>
+            <li>Per-version download manager with status indicators</li>
+            <li>Per-profile engine override &mdash; use different engines for different apps and contacts</li>
+            <li>Improved VAD silence threshold for fewer false turn splits during natural pauses</li>
+            <li>Fixed text loss when stopping mid-speech &mdash; buffer commit waits for final transcription</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v1.5 &ndash; v1.6</span>
+            <span class="release-date">March 26, 2026</span>
+        </div>
+        <ul>
+            <li>Globe key (Fn) support &mdash; use the Globe key to trigger dictation</li>
+            <li>Two dictation modes: Toggle (tap to start/stop) and Hold to Talk (hold key, release to finish)</li>
+            <li>Improved hotkey recorder with local event monitoring</li>
+            <li>Fixed rapid stop-start race condition for back-to-back dictation sessions</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v1.4</span>
+            <span class="release-date">March 26, 2026</span>
+        </div>
+        <ul>
+            <li>Smart contact detection &mdash; auto-switches profiles based on who you're chatting with</li>
+            <li>Window title matching for iMessage, Microsoft Teams, Slack, and any chat app</li>
+            <li>Detect button in profile settings to capture window titles with one click</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v1.2 &ndash; v1.3</span>
+            <span class="release-date">March 25&ndash;26, 2026</span>
+        </div>
+        <ul>
+            <li>OpenAI Realtime engine &mdash; streaming cloud transcription with live partial results</li>
+            <li>Auto language detection for 98+ languages (no manual switching)</li>
+            <li>Two quality tiers: Mini Transcribe (cheap) and Transcribe (highest accuracy)</li>
+            <li>Multi-turn accumulation &mdash; speak across natural pauses without losing text</li>
+            <li>AI post-processing runs once on stop, not during dictation</li>
+            <li>Live transcript visible in overlay while speaking</li>
+            <li>Buffer commit on manual stop &mdash; no lost speech at end of session</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <div class="release-header">
+            <span class="release-version">v1.0</span>
+            <span class="release-date">March 25, 2026</span>
+        </div>
+        <ul>
+            <li>Initial release with three on-device speech engines</li>
+            <li>Apple Speech, OpenAI Whisper (WhisperKit), and NVIDIA Parakeet TDT</li>
+            <li>Per-app profiles with output language and tone customization</li>
+            <li>AI post-processing via OpenAI API (BYOK)</li>
+            <li>Floating dictation overlay with animated waveform</li>
+            <li>Customizable global hotkey</li>
+            <li>Menu bar app with no dock icon</li>
+        </ul>
+    </div>
+</section>
+
+<section class="contact">
+    <div class="contact-inner">
+        <h2>Questions? Feedback? Ideas?</h2>
+        <p>We'd love to hear from you — whether it's a feature request, a bug report, or just to say hi.</p>
+        <a href="mailto:stanley@stanmakes.com" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            stanley@stanmakes.com
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>Built by <a href="https://stanmakes.com">Stan</a> &middot; VoiceFlow v3.1</p>
+    <p style="margin-top: 0.5rem;"><a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="mailto:stanley@stanmakes.com">Contact</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.5;">Free tier always available. Optional subscriptions for managed AI and cloud transcription. On-device engines keep your voice local. Automatic updates via Sparkle.</p>
+</footer>
+
+<script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+<script>
+    // Gentle auto-scroll to pricing after 4 seconds — only on first visit, only if user hasn't scrolled
+    (function() {
+        let userScrolled = false;
+        const onScroll = () => { userScrolled = true; window.removeEventListener('scroll', onScroll); };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        setTimeout(() => {
+            if (!userScrolled) {
+                const el = document.getElementById('pricing');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 4000);
+    })();
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "VoiceFlow",
+    "operatingSystem": "macOS",
+    "applicationCategory": "ProductivityApplication",
+    "offers": [
+        {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF",
+            "description": "Free tier with on-device engines"
+        },
+        {
+            "@type": "Offer",
+            "price": "9.99",
+            "priceCurrency": "CHF",
+            "description": "Pro — one-time purchase"
+        },
+        {
+            "@type": "Offer",
+            "price": "7.99",
+            "priceCurrency": "CHF",
+            "description": "VoiceFlow AI — monthly subscription"
+        },
+        {
+            "@type": "Offer",
+            "price": "14.99",
+            "priceCurrency": "CHF",
+            "description": "VoiceFlow Cloud — monthly subscription"
+        }
+    ],
+    "description": "Voice-to-text dictation for macOS with 98+ languages, AI cleanup, and real-time streaming.",
+    "screenshot": "icon.png",
+    "softwareVersion": "3.0.1",
+    "fileSize": "6MB"
+}
+</script>
+</body>
+</html>
