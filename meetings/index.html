@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MeetingRecorder — Record, transcribe &amp; summarize meetings on your Mac</title>
+<meta name="description" content="A native macOS menu-bar app that records any meeting (Teams, Zoom, Meet, FaceTime), transcribes it with speaker labels, and generates meeting minutes — cloud or fully on-device.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="MeetingRecorder for macOS">
+<meta property="og:description" content="Record, transcribe & summarize any meeting — on your Mac. Cloud or fully on-device.">
+<meta property="og:image" content="/meetings/icon.png">
+<style>
+  :root { --bg:#0d0d0f; --card:#151519; --line:#26262c; --text:#f2f2f5; --muted:#9a9aa6; --red:#ff453a; --accent:#ff5b52; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; padding:0; }
+  body {
+    background:radial-gradient(1200px 600px at 50% -10%, #1c1c22 0%, var(--bg) 60%);
+    color:var(--text);
+    font:16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .wrap { max-width:920px; margin:0 auto; padding:72px 24px 96px; }
+  .hero { text-align:center; }
+  .icon { width:132px; height:132px; border-radius:30px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  h1 { font-size:42px; letter-spacing:-.02em; margin:26px 0 8px; }
+  .tag { font-size:20px; color:var(--muted); margin:0 auto; max-width:560px; }
+  .cta { margin:34px 0 12px; }
+  .btn {
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--red); color:#fff; text-decoration:none; font-weight:600; font-size:18px;
+    padding:15px 30px; border-radius:14px; box-shadow:0 10px 30px rgba(255,69,58,.35);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover { transform:translateY(-1px); box-shadow:0 14px 38px rgba(255,69,58,.45); }
+  .req { color:var(--muted); font-size:14px; margin-top:14px; }
+  .req b { color:var(--text); font-weight:600; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:64px 0 0; }
+  .feat { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 22px; }
+  .feat h3 { margin:0 0 6px; font-size:16px; }
+  .feat p { margin:0; color:var(--muted); font-size:14.5px; }
+  .feat .e { font-size:22px; }
+  .section-title { text-align:center; color:var(--muted); font-size:13px; letter-spacing:.14em; text-transform:uppercase; margin:64px 0 20px; }
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 22px; }
+  .step .n { display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border-radius:50%; background:var(--red); color:#fff; font-weight:700; font-size:14px; margin-bottom:10px; }
+  .step p { margin:0; color:var(--muted); font-size:14.5px; }
+  .step b { color:var(--text); }
+  .note { margin-top:56px; text-align:center; color:var(--muted); font-size:14px; max-width:620px; margin-left:auto; margin-right:auto; }
+  .note .badge { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:4px 12px; margin:4px 4px 0; color:var(--text); font-size:13px; }
+  footer { margin-top:64px; text-align:center; color:#6a6a76; font-size:13px; }
+  footer a { color:#9a9aa6; }
+  a.plain { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <img class="icon" src="/meetings/icon.png" alt="MeetingRecorder icon" width="132" height="132">
+    <h1>MeetingRecorder</h1>
+    <p class="tag">Record, transcribe &amp; summarize any meeting — right on your Mac. Teams, Zoom, Meet, FaceTime… anything that makes sound.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/stanleyswiss/sonotexta-website/releases/latest/download/MeetingRecorder.dmg">
+        ⬇ Download for macOS
+      </a>
+    </div>
+    <p class="req">Requires <b>macOS 15+</b> · <b>Apple Silicon</b> · Signed &amp; notarized · Free</p>
+  </header>
+
+  <section class="grid">
+    <div class="feat"><div class="e">🎙️</div><h3>Records both sides</h3><p>Your mic and the meeting's audio as separate tracks — app-agnostic, no bots or plugins.</p></div>
+    <div class="feat"><div class="e">✍️</div><h3>Accurate transcripts</h3><p>OpenAI Whisper in the cloud, or fully on-device (Parakeet) — multilingual, incl. Czech.</p></div>
+    <div class="feat"><div class="e">🗣️</div><h3>Who said what</h3><p>On-device diarization splits participants into speakers you can rename.</p></div>
+    <div class="feat"><div class="e">📝</div><h3>Meeting minutes</h3><p>Summary, decisions and action items — via OpenAI or your local LM Studio / Ollama.</p></div>
+    <div class="feat"><div class="e">🔒</div><h3>Private by design</h3><p>Run the whole pipeline offline. Audio and notes stay in a folder on your Mac.</p></div>
+    <div class="feat"><div class="e">📄</div><h3>Menu bar &amp; Markdown</h3><p>Lives in the menu bar, notifies when done, and exports clean Markdown.</p></div>
+  </section>
+
+  <p class="section-title">Install in 3 steps</p>
+  <section class="steps">
+    <div class="step"><span class="n">1</span><p>Open the downloaded <b>DMG</b> and drag <b>MeetingRecorder</b> into <b>Applications</b>.</p></div>
+    <div class="step"><span class="n">2</span><p>Launch it — it appears in your <b>menu bar</b> (the ⓡ icon). Click <b>Start Recording</b>.</p></div>
+    <div class="step"><span class="n">3</span><p>Grant <b>Microphone</b> and <b>Screen &amp; System Audio Recording</b> when asked. That's it.</p></div>
+  </section>
+
+  <p class="note">
+    Signed with a Developer ID and notarized by Apple, so it installs without warnings.
+    <br>
+    <span class="badge">On-device transcription</span>
+    <span class="badge">Local summaries (LM Studio / Ollama)</span>
+    <span class="badge">OpenAI supported</span>
+  </p>
+
+  <footer>
+    A companion to <a href="https://sonotexta.com">Sonotexta</a> · © 2026 Stanislav Ivanov
+  </footer>
+</div>
+</body>
+</html>
