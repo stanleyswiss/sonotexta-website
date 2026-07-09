@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Screeny</title>
+    <link>https://sonotexta.com/screeny/appcast.xml</link>
+    <description>Updates for Screeny.</description>
+    <language>en</language>
+    <!-- NEW ITEMS INSERTED BELOW -->
+    <item>
+      <title>Version 0.1.0</title>
+      <sparkle:version>1</sparkle:version>
+      <sparkle:shortVersionString>0.1.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Thu, 09 Jul 2026 10:24:38 +0000</pubDate>
+      <enclosure url="https://github.com/stanleyswiss/screeny-updates/releases/download/v0.1.0/Screeny.dmg" length="3025296" type="application/octet-stream" sparkle:edSignature="KeZ0Lg/c9qLKNUbjJPKTHjCyWlTLpcYKLh+tt1FIdBuoSHnroybGTcEXyUrgKzisue/KvzankcqN+8UZ7S42CQ==" />
+    </item>
+  </channel>
+</rss>
