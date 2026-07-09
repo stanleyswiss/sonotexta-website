@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Screeny — Fast screenshots &amp; annotation for your Mac</title>
+<meta name="description" content="A native macOS menu-bar screenshot tool: capture any area, window or screen, then annotate, blur, stamp, frame and share — with global shortcuts and instant editing.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Screeny for macOS">
+<meta property="og:description" content="Capture, annotate and share screenshots — right on your Mac. Fast, native, notarized.">
+<meta property="og:image" content="/screeny/icon.png">
+<style>
+  :root { --bg:#0d0d0f; --card:#151519; --line:#26262c; --text:#f2f2f5; --muted:#9a9aa6; --red:#4f7cff; --accent:#7d68ff; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; padding:0; }
+  body {
+    background:radial-gradient(1200px 600px at 50% -10%, #1a1b26 0%, var(--bg) 60%);
+    color:var(--text);
+    font:16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .wrap { max-width:920px; margin:0 auto; padding:72px 24px 96px; }
+  .hero { text-align:center; }
+  .icon { width:132px; height:132px; border-radius:30px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  h1 { font-size:42px; letter-spacing:-.02em; margin:26px 0 8px; }
+  .tag { font-size:20px; color:var(--muted); margin:0 auto; max-width:560px; }
+  .cta { margin:34px 0 12px; }
+  .btn {
+    display:inline-flex; align-items:center; gap:10px;
+    background:linear-gradient(135deg, var(--red), var(--accent)); color:#fff; text-decoration:none; font-weight:600; font-size:18px;
+    padding:15px 30px; border-radius:14px; box-shadow:0 10px 30px rgba(79,124,255,.35);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover { transform:translateY(-1px); box-shadow:0 14px 38px rgba(125,104,255,.45); }
+  .req { color:var(--muted); font-size:14px; margin-top:14px; }
+  .req b { color:var(--text); font-weight:600; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:64px 0 0; }
+  .feat { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 22px; }
+  .feat h3 { margin:0 0 6px; font-size:16px; }
+  .feat p { margin:0; color:var(--muted); font-size:14.5px; }
+  .feat .e { font-size:22px; }
+  .section-title { text-align:center; color:var(--muted); font-size:13px; letter-spacing:.14em; text-transform:uppercase; margin:64px 0 20px; }
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 22px; }
+  .step .n { display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border-radius:50%; background:var(--red); color:#fff; font-weight:700; font-size:14px; margin-bottom:10px; }
+  .step p { margin:0; color:var(--muted); font-size:14.5px; }
+  .step b { color:var(--text); }
+  .note { margin-top:56px; text-align:center; color:var(--muted); font-size:14px; max-width:620px; margin-left:auto; margin-right:auto; }
+  .note .badge { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:4px 12px; margin:4px 4px 0; color:var(--text); font-size:13px; }
+  footer { margin-top:64px; text-align:center; color:#6a6a76; font-size:13px; }
+  footer a { color:#9a9aa6; }
+  a.plain { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <img class="icon" src="/screeny/icon.png" alt="Screeny icon" width="132" height="132">
+    <h1>Screeny</h1>
+    <p class="tag">Capture any area, window or screen — then annotate, blur, stamp and share. A fast, native menu-bar screenshot tool for your Mac.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/stanleyswiss/screeny-updates/releases/latest/download/Screeny.dmg">
+        ⬇ Download for macOS
+      </a>
+    </div>
+    <p class="req">Requires <b>macOS 14+</b> · <b>Apple Silicon</b> · Signed &amp; notarized · Free</p>
+  </header>
+
+  <section class="grid">
+    <div class="feat"><div class="e">🎯</div><h3>Precise area capture</h3><p>Crosshair selection with live dimensions across every display — full screen and window capture too.</p></div>
+    <div class="feat"><div class="e">✏️</div><h3>Instant annotation</h3><p>Arrows, lines, shapes, highlight, text, crop and cut — movable, resizable, with undo/redo.</p></div>
+    <div class="feat"><div class="e">🌫️</div><h3>Blur &amp; pixelate</h3><p>Hide sensitive text with an adjustable Gaussian blur or pixelate. Numbered, check and ✕ stamps.</p></div>
+    <div class="feat"><div class="e">🖼️</div><h3>Make it pop</h3><p>Frame captures on a solid or gradient background with padding and a soft drop shadow.</p></div>
+    <div class="feat"><div class="e">⌨️</div><h3>Global shortcuts</h3><p>Trigger any capture mode system-wide — even the top-left key works on both ANSI and ISO keyboards.</p></div>
+    <div class="feat"><div class="e">🗂️</div><h3>Library &amp; auto-update</h3><p>Browse past captures, copy or clean up, and get new versions automatically.</p></div>
+  </section>
+
+  <p class="section-title">Install in 3 steps</p>
+  <section class="steps">
+    <div class="step"><span class="n">1</span><p>Open the downloaded <b>DMG</b> and drag <b>Screeny</b> into <b>Applications</b>.</p></div>
+    <div class="step"><span class="n">2</span><p>Launch it — it appears in your <b>menu bar</b> (the camera icon). Pick a capture mode.</p></div>
+    <div class="step"><span class="n">3</span><p>Grant <b>Screen Recording</b> when asked (once). That's it — capture away.</p></div>
+  </section>
+
+  <p class="note">
+    Signed with a Developer ID and notarized by Apple, so it installs without warnings.
+    <br>
+    <span class="badge">Menu-bar app</span>
+    <span class="badge">Multi-display</span>
+    <span class="badge">Customizable shortcuts</span>
+    <span class="badge">Free</span>
+  </p>
+
+  <footer>
+    A companion to <a href="https://sonotexta.com">Sonotexta</a> · © 2026 Stanislav Ivanov
+  </footer>
+</div>
+</body>
+</html>
