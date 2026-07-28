@@ -7,6 +7,14 @@
     <language>en</language>
     <!-- NEW ITEMS INSERTED BELOW -->
     <item>
+      <title>Version 0.2.6</title>
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>0.2.6</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Tue, 28 Jul 2026 13:59:52 +0000</pubDate>
+      <enclosure url="https://github.com/stanleyswiss/screeny-updates/releases/download/v0.2.6/Screeny.dmg" length="3246741" type="application/octet-stream" sparkle:edSignature="M1Etcri/JE1TveMV7c87TgMlbwqQDXebjcESijbz0JNY3B19M03UJ9625lp5nl0oLfrsolK2cOZumR59I/TGAQ==" />
+    </item>
+    <item>
       <title>Version 0.2.5</title>
       <sparkle:version>14</sparkle:version>
       <sparkle:shortVersionString>0.2.5</sparkle:shortVersionString>
