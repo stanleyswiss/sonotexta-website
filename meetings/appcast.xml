@@ -7,6 +7,14 @@
     <language>en</language>
     <!-- NEW ITEMS INSERTED BELOW -->
     <item>
+      <title>Version 0.1.13</title>
+      <sparkle:version>13</sparkle:version>
+      <sparkle:shortVersionString>0.1.13</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+      <pubDate>Thu, 08 Oct 2026 14:37:52 +0000</pubDate>
+      <enclosure url="https://github.com/stanleyswiss/sonotexta-website/releases/download/v0.1.13/MeetingRecorder.dmg" length="9553432" type="application/octet-stream" sparkle:edSignature="pgCuPl2gm4CP67f+3QZZ/HbL0iRyc1JNryKzhbRSDLCnaJL7ld4Iv0qlMHTkvF6OLj9jPbsUJini3/1r/ZtFAA==" />
+    </item>
+    <item>
       <title>Version 0.1.12</title>
       <sparkle:version>12</sparkle:version>
       <sparkle:shortVersionString>0.1.12</sparkle:shortVersionString>
