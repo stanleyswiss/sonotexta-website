@@ -66,7 +66,7 @@
       <!-- Slot for the hand-drawn canvas animation. Drop a <canvas> (or <svg>) in here;
            it fills the stage. hero-poster.png is the static fallback and is hidden if missing. -->
       <figure class="stage" id="hero-animation">
-        <img src="hero-poster.png" alt="Sonotexta turning speech into written text" onerror="this.hidden = true">
+        <video src="sonotexta-hero.mp4" poster="sonotexta-hero-poster.jpg" width="1920" height="1080" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
         <figcaption class="sr-only">A hand-drawn animation: a person presses the Globe key, speaks, and their words appear as clean text in the app they are typing in.</figcaption>
       </figure>
     </header>
@@ -173,6 +173,16 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.hasAttribute('open')) { menu.removeAttribute('open'); menu.querySelector('summary').focus(); }
     });
+  })();
+</script>
+<script>
+  // Respect reduced motion: keep the hero on its poster frame instead of looping.
+  (function () {
+    var v = document.querySelector("#hero-animation video");
+    if (!v || !window.matchMedia) return;
+    var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var apply = function () { if (mq.matches) { v.removeAttribute("autoplay"); v.pause(); v.currentTime = 0; } else { v.play().catch(function () {}); } };
+    apply(); if (mq.addEventListener) mq.addEventListener("change", apply);
   })();
 </script>
 </body>
