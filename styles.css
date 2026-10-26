@@ -201,6 +201,9 @@ footer a:hover { color: var(--ink); text-decoration: underline; }
   .hero p.lead { font-size: 18px; }
   .hero .ctas { flex-direction: column; align-items: stretch; max-width: 360px; margin: 0 auto; }
   .stage { margin-top: 40px; border-radius: 20px; box-shadow: 4px 5px 0 rgba(31, 35, 48, .12); }
+  /* phones: frame in on the laptop so the overlay stays legible */
+  .stage { aspect-ratio: 4 / 3; }
+  .stage > video { object-fit: cover; object-position: 50% 32%; transform: scale(1.18); transform-origin: 50% 36%; }
   .oss { padding: 28px 22px; border-radius: 24px; }
   .oss .ctas { flex-direction: column; align-items: stretch; }
   .oss .side { justify-items: stretch; }
