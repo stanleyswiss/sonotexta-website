@@ -219,3 +219,9 @@ footer a:hover { color: var(--ink); text-decoration: underline; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .btn-primary:hover, .coffee:hover { transform: none; }
 }
+
+/* contact */
+.contact { padding: 72px 0 24px; scroll-margin-top: 24px; }
+.contact p { font-size: 19px; color: var(--ink-2); max-width: 56ch; margin: 16px 0 0; }
+.contact p a { color: var(--brand); text-underline-offset: 3px; }
+h2[id] { scroll-margin-top: 24px; }
